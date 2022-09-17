@@ -1,10 +1,42 @@
 <script>
-	export let name;
+  import {Route} from 'tinro';
+  import MediaQuery from './routes/comp/MediaQuery.svelte';
+  import Nav from './routes/comp/Nav.svelte';
+  import Home from './routes/Home.svelte';
+  import Colors from './routes/Colors.svelte';
+  import FontWeight from './routes/Fontweight.svelte';
+    import Fontweight from './routes/Fontweight.svelte';
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+  <MediaQuery query="(max-width: 500px)" let:matches>
+    {#if matches}
+
+      <h1>fuck off mobile user</h1>
+      
+    {/if}
+  </MediaQuery>
+
+
+  <MediaQuery query="(min-width: 501px)" let:matches>
+    {#if matches}
+
+      <div class="navbar">
+        <div class="logo">
+          <img src="/assets/boh-logo.png" alt="logo">
+        </div>
+        <Nav />
+      </div>
+
+      <Route path="/"><Home/></Route>
+
+      <Route path="/colors"><Colors/></Route>
+
+      <Route path="/fontweight"><Fontweight/></Route>
+
+    {/if}
+  </MediaQuery>
+
 </main>
 
 <style>
@@ -15,16 +47,20 @@
 		margin: 0 auto;
 	}
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
 		}
 	}
+
+  .navbar {
+    display: flex;
+  }
+  
+  .logo {
+    width: 20vw;
+  }
+  .logo img {
+    height: 4em;
+  }
 </style>
