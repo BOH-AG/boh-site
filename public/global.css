@@ -1,7 +1,7 @@
 /* Theme colors. */
 :root {
 	--mdc-theme-primary: #e82312;
-	--mdc-theme-secondary: #4c4c9d;
+	--mdc-theme-secondary: #6320ee;
 	--mdc-theme-background: #0c0910;
 	--mdc-theme-surface: #0c0911;
 	--mdc-theme-error: #b71c1c;
@@ -54,7 +54,7 @@ body {
 	--main-bg: #0C0910;
 	--textwhite: #EAEAEA;
 	--primary: #E82312;
-	--secondary: #4C4C9D;
+	--secondary: #6320ee;
 	color: var(--textwhite);
 	background-color: var(--main-bg);
 }

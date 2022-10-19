@@ -62,11 +62,11 @@
   <div class="side">
     <h2>Secondary</h2>
     <Group variant="raised" style="width:25vw;margin:auto">
-      <Button variant="raised" style="width:50%;--mdc-theme-primary: #4c4c9d;">
-        <Label>#4c4c9d</Label>
+      <Button variant="raised" style="width:50%;--mdc-theme-primary: #6320ee;">
+        <Label>#6320ee</Label>
       </Button>
-      <Button variant="raised" style="width:50%;--mdc-theme-primary: #4c4c9d;--mdc-theme-on-primary: #eaeaea;">
-        <Label>#4c4c9d</Label>
+      <Button variant="raised" style="width:50%;--mdc-theme-primary: #6320ee;--mdc-theme-on-primary: #eaeaea;">
+        <Label>#6320ee</Label>
       </Button>
     </Group>
     <hr>
