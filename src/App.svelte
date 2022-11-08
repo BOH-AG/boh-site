@@ -4,8 +4,8 @@
   import Nav from './routes/comp/Nav.svelte';
   import Home from './routes/Home.svelte';
   import Colors from './routes/Colors.svelte';
-  import FontWeight from './routes/Fontweight.svelte';
-    import Fontweight from './routes/Fontweight.svelte';
+  import Fontweight from './routes/Fontweight.svelte';
+  import Landing from './routes/Landing.svelte';
 </script>
 
 <main>
@@ -28,7 +28,7 @@
         <Nav />
       </div>
 
-      <Route path="/"><Home/></Route>
+      <Route path="/"><Landing/></Route>
 
       <Route path="/colors"><Colors/></Route>
 

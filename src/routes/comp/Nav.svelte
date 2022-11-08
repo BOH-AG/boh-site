@@ -1,6 +1,7 @@
 <script>
   import Tab, { Icon, Label } from '@smui/tab';
   import TabBar from '@smui/tab-bar';
+  import {router} from 'tinro';
 
   let tabs = [
     {
@@ -22,7 +23,16 @@
       anchor: '/fontweight',
     },
   ];
+
+  // make sure correct tab is active on new page load
+  const route = $router.path;
   let active = tabs[0];
+
+  for(let i=0; i<tabs.length; i++) {
+    if (tabs[i].anchor == route) {
+      active = tabs[i];
+    }
+  }
 </script>
 
 <nav>

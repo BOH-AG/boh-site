@@ -50,6 +50,7 @@ html, body {
 body {
 	font-family: -apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	margin: 0;
+	padding: 0;
 	
 	--main-bg: #0C0910;
 	--textwhite: #EAEAEA;
@@ -57,5 +58,18 @@ body {
 	--secondary: #6320ee;
 	color: var(--textwhite);
 	background-color: var(--main-bg);
+	/*                foreground background*/
+	scrollbar-color: #ffffff20 #00000000;
+	scrollbar-width: 12px;
+}
+body::-webkit-scrollbar {
+	width: 12px; /* vertical scrollbars */
+	height: 12px; /* horizontal scrollbars */
+}
+body::-webkit-scrollbar-thumb { /* foreground */
+	background: #ffffff20;
+  }
+body::-webkit-scrollbar-track { /* background */
+	background: #00000000;
 }
 
