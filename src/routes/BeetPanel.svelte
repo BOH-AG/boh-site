@@ -1,0 +1,151 @@
+<script>
+    import PocketBase from 'pocketbase';
+    import dayjs from 'dayjs';
+    import { onMount } from 'svelte';
+
+    const client = new PocketBase("https://db.theboh.de");
+    /*
+    onMount(() => {
+        let hochbeet = fetch("https://db.theboh.de/api/collections/hochbeet/records")
+                    .then(response => response.json())
+                    .then(result => reqData = result.items)
+        
+        console.log(reqData);
+    });*/
+    
+    function records(id, param = "") {
+        return fetch("https://db.theboh.de/api/collections/"+ id +"/records/" + param)
+                .then(response => response.json());
+    }
+
+    function fixDate(date) {
+        return date.replace(" ", "T").replace(".", "").slice(0, -3);
+    }
+
+
+    let moistureVal = [/*%min*/10, 60/*%max*/];
+
+    function percentify(val) {
+        return (val-moistureVal[0]+0.1)/(moistureVal[1]*0.01);
+    }
+
+    function relativeTime(date) { // date as STRING
+        let delta = dayjs().diff(dayjs(date), "seconds");
+
+        if (delta<45) {
+            return "vor "+delta+" Sekunden";
+        } else if (delta<90) {
+            return "vor einer Minute";
+        } else if (delta<2700) {
+            return "vor "+ Math.round(delta/60) + " Minuten";
+        } else if (delta<5400) {
+            return "vor einer Stunde";
+        } else if (delta<79200) {
+            return "vor "+ Math.round(delta/3600) +" Stunden";
+        } else if (delta<129600) {
+            return "vor einem Tag";
+        } else if (delta<2246400) {
+            return "vor "+ Math.round(delta/86400) +" Tage";
+        } else if (delta<3974400) {
+            return "vor einem Monat";
+        } else /*if (delta<28512000)*/ {
+            return "vor "+ Math.round(delta/2592000) +" Monate";
+        }
+    }
+
+    
+</script>
+{#await records("hochbeet")}
+    <div class="chipset">
+        <div class="chip">&nbsp;</div>
+    </div>
+{:then data}
+    <div class="chipset">
+        {#each data.items as record}
+            <div class="chip">
+                {#await records("beet"+record.idnum, "?sort=-timestamp")}
+                    🦃
+                {:then beetRecords} 
+                    <h1>Hochbeet #{record.idnum}</h1>
+                    <div class="flex1">
+                        <div style="width: 40%">
+                            <h3>Feuchtigkeit in %</h3>
+                            <div class="flex2">
+                                {#each [
+                                    beetRecords.items[0].moisture1,
+                                    beetRecords.items[0].moisture2,
+                                    beetRecords.items[0].moisture3
+                                    ] as i}
+                                    <div class="barContainer">
+                                        <div class="bar"
+                                            style="height: {percentify(i)}%"
+                                        ></div>
+                                    </div>
+                                {/each}
+                            </div>
+                        </div>
+                        <img src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2021/12/line-graph-1-what-is.jpg" alt="Graph">
+                    </div>
+                    {#await records("beet1", "?filter=(wasWatered=true)&sort=-timestamp")}
+                        <p>&nbsp;</p>
+                    {:then time} 
+                        <p>zuletzt {relativeTime(fixDate(time.items[0].timestamp))} bewässert</p>
+                        <p>{fixDate(time.items[0].timestamp)}</p>
+                    {/await}
+                {/await}
+            </div>
+        {/each}
+    </div>
+{/await}
+
+<style>
+    .chipset {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        row-gap: 2em;
+    }
+    .chip {
+        border-radius: 1em;
+        flex-basis: auto;
+        min-width: 30em;
+        height: 23em;
+        background: #ffffff11;
+    }
+    .barContainer {
+        margin: 0;
+        padding: 0;
+        border: 2px solid #eaeaea;
+        width: 3em;
+        height: 8em;
+        overflow: hidden;
+        border-radius: 0.5em;
+        display: flex;
+        align-items: flex-end;
+    }
+    .bar {
+        width: 100%;
+        background: #0b40b1;
+        margin: 0;
+    }
+    .flex1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 1em;
+    }
+    .flex1 h3 {
+        margin-bottom: 0.5em;
+    }
+    .flex1 img {
+        width: 10em;
+        height: 7em;
+    }
+    .flex2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+</style>

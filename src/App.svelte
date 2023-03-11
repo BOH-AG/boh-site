@@ -6,6 +6,7 @@
   import Colors from './routes/Colors.svelte';
   import Fontweight from './routes/Fontweight.svelte';
   import Landing from './routes/Landing.svelte';
+  import BeetPanel from './routes/BeetPanel.svelte';
 </script>
 
 <main>
@@ -20,7 +21,7 @@
 
   <MediaQuery query="(min-width: 501px)" let:matches>
     {#if matches}
-
+      <!--
       <div class="navbar">
         <div class="logo">
           <img src="/assets/boh-logo.png" alt="logo">
@@ -28,11 +29,13 @@
         <Nav />
       </div>
 
-      <Route path="/"><Landing/></Route>
-
       <Route path="/colors"><Colors/></Route>
 
       <Route path="/fontweight"><Fontweight/></Route>
+      -->
+      <Route path="/"><Home/></Route>
+      
+      <Route path="/beet"><BeetPanel/></Route>
 
     {/if}
   </MediaQuery>
