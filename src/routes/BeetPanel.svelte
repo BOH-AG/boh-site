@@ -3,30 +3,20 @@
     import dayjs from 'dayjs';
     import { onMount } from 'svelte';
 
-    const client = new PocketBase("https://db.theboh.de");
-    /*
-    onMount(() => {
-        let hochbeet = fetch("https://db.theboh.de/api/collections/hochbeet/records")
-                    .then(response => response.json())
-                    .then(result => reqData = result.items)
-        
-        console.log(reqData);
-    });*/
     
     function records(id, param = "") {
         return fetch("https://db.theboh.de/api/collections/"+ id +"/records/" + param)
                 .then(response => response.json());
     }
 
+
     function fixDate(date) {
         return date.replace(" ", "T").replace(".", "").slice(0, -3);
     }
 
-
-    let moistureVal = [/*%min*/10, 60/*%max*/];
-
+    let range = [/*%min*/10, 60/*%max*/];
     function percentify(val) {
-        return (val-moistureVal[0]+0.1)/(moistureVal[1]*0.01);
+        return (val-range[0]+0.1)/(range[1]*0.01);
     }
 
     function relativeTime(date) { // date as STRING
@@ -55,7 +45,7 @@
 
     
 </script>
-{#await records("hochbeet")}
+{#await records("beete")}
     <div class="chipset">
         <div class="chip">&nbsp;</div>
     </div>
@@ -63,10 +53,10 @@
     <div class="chipset">
         {#each data.items as record}
             <div class="chip">
-                {#await records("beet"+record.idnum, "?sort=-timestamp")}
+                {#await records("beetDaten", "?filter=(beet='"+ record.id +"')&sort=-created")}
                     🦃
                 {:then beetRecords} 
-                    <h1>Hochbeet #{record.idnum}</h1>
+                    <h1>Hochbeet #{record.num}</h1>
                     <div class="flex1">
                         <div style="width: 40%">
                             <h3>Feuchtigkeit in %</h3>
@@ -85,12 +75,13 @@
                             </div>
                         </div>
                         <img src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2021/12/line-graph-1-what-is.jpg" alt="Graph">
-                    </div>
-                    {#await records("beet1", "?filter=(wasWatered=true)&sort=-timestamp")}
+
+                    </div> <!--       \/ this link is url encoded -->
+                    {#await records("beetDaten", "?filter=%28beet%3D%27"+ record.id +"%27%26%26wasWatered%3Dtrue%29&sort=-created")}
                         <p>&nbsp;</p>
                     {:then time} 
-                        <p>zuletzt {relativeTime(fixDate(time.items[0].timestamp))} bewässert</p>
-                        <p>{fixDate(time.items[0].timestamp)}</p>
+                        <p>zuletzt {relativeTime(fixDate(time.items[0].created))} bewässert</p>
+                        <p>{fixDate(time.items[0].created)}</p>
                     {/await}
                 {/await}
             </div>
