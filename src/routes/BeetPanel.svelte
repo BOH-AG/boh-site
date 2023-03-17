@@ -2,6 +2,7 @@
     import PocketBase from 'pocketbase';
     import dayjs from 'dayjs';
     import { onMount } from 'svelte';
+    import Wave from './comp/Wave.svelte';
 
     
     function records(id, param = "") {
@@ -65,16 +66,14 @@
                                     beetRecords.items[0].moisture1,
                                     beetRecords.items[0].moisture2,
                                     beetRecords.items[0].moisture3
-                                    ] as i}
-                                    <div class="barContainer">
-                                        <div class="bar"
-                                            style="height: {percentify(i)}%"
-                                        ></div>
+                                    ] as i, ii}
+                                    <div class="bar">
+                                        <Wave height={8*(percentify(i)*0.01)} delay={ii}/>
                                     </div>
                                 {/each}
                             </div>
                         </div>
-                        <img src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2021/12/line-graph-1-what-is.jpg" alt="Graph">
+                        <img class="graph" src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2021/12/line-graph-1-what-is.jpg" alt="Graph">
 
                     </div> <!--       \/ this link is url encoded -->
                     {#await records("beetDaten", "?filter=%28beet%3D%27"+ record.id +"%27%26%26wasWatered%3Dtrue%29&sort=-created")}
@@ -102,9 +101,10 @@
         flex-basis: auto;
         min-width: 30em;
         height: 23em;
-        background: #ffffff11;
+        background: #191c2977;
+        border: 0.2em solid #00000000;
     }
-    .barContainer {
+    .bar {
         margin: 0;
         padding: 0;
         border: 2px solid #eaeaea;
@@ -114,11 +114,6 @@
         border-radius: 0.5em;
         display: flex;
         align-items: flex-end;
-    }
-    .bar {
-        width: 100%;
-        background: #0b40b1;
-        margin: 0;
     }
     .flex1 {
         display: flex;
@@ -130,7 +125,7 @@
     .flex1 h3 {
         margin-bottom: 0.5em;
     }
-    .flex1 img {
+    .flex1 .graph {
         width: 10em;
         height: 7em;
     }

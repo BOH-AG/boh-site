@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="2560px" height="160px" viewBox="0 0 2560 160" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M0 0L2560 0L2560 160L0 160L0 0Z" id="path_1" />
+    <path d="M0 0L1280 0L1280 1280L0 1280L0 0Z" id="path_2" />
+    <clipPath id="clip_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+    <clipPath id="clip_2">
+      <use xlink:href="#path_2" />
+    </clipPath>
+  </defs>
+  <g id="Frame" clip-path="url(#clip_1)">
+    <path d="M0 0L2560 0L2560 160L0 160L0 0Z" id="Frame" fill="#FFFFFF" fill-rule="evenodd" stroke="none" />
+    <g id="Wave-16.7s-1084px" clip-path="url(#clip_2)" transform="translate(-0.00012207031 0.00012207031)">
+      <path d="M0 0L1280 0L1280 1280L0 1280L0 0Z" id="Wave-16.7s-1084px" fill="none" fill-rule="evenodd" stroke="none" />
+      <g id="Group" transform="translate(-1284 -630)">
+        <path d="M1280 128C1600 128 1600 0 1920 0C2240 0 2240 128 2570 128C2880 128 2880 0 3200 0C3520 0 3520 128 3840 128L4480 1910L640 1910L640 128L1280 128Z" id="Shape" fill="#12121C" fill-rule="evenodd" stroke="#12121C" stroke-width="1" />
+        <path d="M640 768C960 768 960 640 1280 640C1600 640 1600 768 1930 768C2240 768 2240 640 2560 640C2880 640 2880 768 3200 768L3840 2550L0 2550L0 768L640 768Z" id="Shape" fill="#2541B2" fill-rule="evenodd" stroke="#2541B2" stroke-width="1" />
+      </g>
+    </g>
+    <g id="Wave-16.7s-1084px 2" clip-path="url(#clip_2)" transform="translate(1280.0001 0)">
+      <path d="M0 0L1280 0L1280 1280L0 1280L0 0Z" id="Wave-16.7s-1084px-2" fill="none" fill-rule="evenodd" stroke="none" />
+      <g id="Group" transform="translate(-1284 -630)">
+        <path d="M1280 128C1600 128 1600 0 1920 0C2240 0 2240 128 2570 128C2880 128 2880 0 3200 0C3520 0 3520 128 3840 128L4480 1910L640 1910L640 128L1280 128Z" id="Shape" fill="#12121C" fill-rule="evenodd" stroke="#12121C" stroke-width="1" />
+        <path d="M640 768C960 768 960 640 1280 640C1600 640 1600 768 1930 768C2240 768 2240 640 2560 640C2880 640 2880 768 3200 768L3840 2550L0 2550L0 768L640 768Z" id="Shape" fill="#2541B2" fill-rule="evenodd" stroke="#2541B2" stroke-width="1" />
+      </g>
+    </g>
+  </g>
+</svg>
