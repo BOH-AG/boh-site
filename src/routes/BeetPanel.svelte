@@ -1,8 +1,6 @@
 <script>
-    import PocketBase from 'pocketbase';
     import dayjs from 'dayjs';
-    import { onMount } from 'svelte';
-    import Wave from './comp/Wave.svelte';
+    import WaterBar from './comp/WaterBar.svelte';
 
     
     function records(id, param = "") {
@@ -12,7 +10,7 @@
 
 
     function fixDate(date) {
-        return date.replace(" ", "T").replace(".", "").slice(0, -3);
+        return date.replace(" ", "T").replace(".", "").slice(0, -4);
     }
 
     let range = [/*%min*/10, 60/*%max*/];
@@ -20,7 +18,7 @@
         return (val-range[0]+0.1)/(range[1]*0.01);
     }
 
-    function relativeTime(date) { // date as STRING
+    function relativeTime(date) { // pass date as string
         let delta = dayjs().diff(dayjs(date), "seconds");
 
         if (delta<45) {
@@ -67,15 +65,13 @@
                                     beetRecords.items[0].moisture2,
                                     beetRecords.items[0].moisture3
                                     ] as i, ii}
-                                    <div class="bar">
-                                        <Wave height={8*(percentify(i)*0.01)} delay={ii}/>
-                                    </div>
+                                        <WaterBar percent={[i, percentify(i)]} height={8*(percentify(i)*0.01)} delay={ii}/>
                                 {/each}
                             </div>
                         </div>
                         <img class="graph" src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2021/12/line-graph-1-what-is.jpg" alt="Graph">
 
-                    </div> <!--       \/ this link is url encoded -->
+                    </div> <!--                     \/ this link is url encoded -->
                     {#await records("beetDaten", "?filter=%28beet%3D%27"+ record.id +"%27%26%26wasWatered%3Dtrue%29&sort=-created")}
                         <p>&nbsp;</p>
                     {:then time} 
