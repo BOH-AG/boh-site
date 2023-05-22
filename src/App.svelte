@@ -7,6 +7,7 @@
   import Fontweight from './routes/Fontweight.svelte';
   import Landing from './routes/Landing.svelte';
   import BeetPanel from './routes/BeetPanel.svelte';
+  import TempSolution from './routes/TempSolution.svelte';
 </script>
 
 <main>
@@ -33,7 +34,9 @@
 
       <Route path="/fontweight"><Fontweight/></Route>
       -->
-      <Route path="/"><Home/></Route>
+      <Route path="/">
+      <TempSolution/>
+      </Route>
       
       <Route path="/beet"><BeetPanel/></Route>
 
@@ -45,7 +48,6 @@
 <style>
 	main {
 		text-align: center;
-		padding: 1em;
 		max-width: 240px;
 		margin: 0 auto;
 	}
@@ -55,15 +57,4 @@
 			max-width: none;
 		}
 	}
-
-  .navbar {
-    display: flex;
-  }
-  
-  .logo {
-    width: 20vw;
-  }
-  .logo img {
-    height: 4em;
-  }
 </style>
