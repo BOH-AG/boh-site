@@ -14,7 +14,9 @@
   <MediaQuery query="(max-width: 500px)" let:matches>
     {#if matches}
 
-      <h1>fuck off mobile user</h1>
+    <Route path="/">
+      <TempSolution/>
+    </Route>
       
     {/if}
   </MediaQuery>
@@ -35,7 +37,7 @@
       <Route path="/fontweight"><Fontweight/></Route>
       -->
       <Route path="/">
-      <TempSolution/>
+        <TempSolution/>
       </Route>
       
       <Route path="/beet"><BeetPanel/></Route>

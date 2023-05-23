@@ -45,21 +45,23 @@
 
 </script>
 
-<div class="outside">
-    <div class="centered">
-        {#await records("temp", "?sort=-created")}
-            &nbsp;
-        {:then data}
-            <FormField style="margin: 2em; height: 5em">
-                <Switch bind:checked={checked} on:SMUISwitch:change={(e) => (doTheThing(e))} color="primary"/>
-                <h1 slot="label">Bewässerung läuft {#if checked}😊{:else}nicht 😢{/if}</h1>
-            </FormField>
-            <br id={setup(data.items[0].created)}>
-            <p style="margin-bottom: 0;">zuletzt geändert {timeString}</p>
-            <h6 style="margin-top: 1em; color:#ffffff66">( {dayjs(data.items[0].created).format('DD.MM - HH:mm:ss')} )</h6>
-        {/await}
-    </div>    
-</div>
+<main style="padding: 0; margin: none">
+    <div class="outside">
+        <div class="centered">
+            {#await records("temp", "?sort=-created")}
+                &nbsp;
+            {:then data}
+                <FormField style="margin: 2em; height: 5em">
+                    <Switch bind:checked={checked} on:SMUISwitch:change={(e) => (doTheThing(e))} color="primary"/>
+                    <h1 slot="label">Bewässerung läuft {#if checked}😊{:else}nicht 😢{/if}</h1>
+                </FormField>
+                <br id={setup(data.items[0].created)}>
+                <p style="margin-bottom: 0;">zuletzt geändert {timeString}</p>
+                <h6 style="margin-top: 1em; color:#ffffff66">( {dayjs(data.items[0].created).format('DD.MM - HH:mm:ss')} )</h6>
+            {/await}
+        </div>    
+    </div>
+</main>
 
 
 <style>
@@ -69,11 +71,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0;
     }
 
     .centered { 
         background: #4c3266;
         border-radius: 2em;
-        width: 30em;
+        margin: 0;
+    }
+
+    h1 {
+        line-height: 1.2em;
     }
 </style>
