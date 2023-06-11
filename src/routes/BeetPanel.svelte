@@ -34,7 +34,7 @@
                         </div>
                         <img class="graph" src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2021/12/line-graph-1-what-is.jpg" alt="Graph">
 
-                    </div> <!--                     \/ this link is url encoded -->
+                    </div> <!--                !!!  \/ this link is url encoded -->
                     {#await records("beetDaten", "?filter=%28beet%3D%27"+ record.id +"%27%26%26wasWatered%3Dtrue%29&sort=-created")}
                         <p>&nbsp;</p>
                     {:then time} 
@@ -62,17 +62,6 @@
         height: 23em;
         background: #191c2977;
         border: 0.2em solid #00000000;
-    }
-    .bar {
-        margin: 0;
-        padding: 0;
-        border: 2px solid #eaeaea;
-        width: 3em;
-        height: 8em;
-        overflow: hidden;
-        border-radius: 0.5em;
-        display: flex;
-        align-items: flex-end;
     }
     .flex1 {
         display: flex;

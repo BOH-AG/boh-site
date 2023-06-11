@@ -8,6 +8,8 @@
   import Landing from './routes/Landing.svelte';
   import BeetPanel from './routes/BeetPanel.svelte';
   import TempSolution from './routes/TempSolution.svelte';
+  import PocketBase from 'pocketbase';
+  import Beet from './routes/Beet.svelte';
 </script>
 
 <main>
@@ -17,7 +19,8 @@
     <Route path="/">
       <TempSolution/>
     </Route>
-      
+    <Route path="/beet"><BeetPanel/></Route>
+    <Route path="/a"><Beet/></Route>
     {/if}
   </MediaQuery>
 
@@ -41,22 +44,11 @@
       </Route>
       
       <Route path="/beet"><BeetPanel/></Route>
-
+      <Route path="/a"><Beet/></Route>
     {/if}
   </MediaQuery>
 
 </main>
 
 <style>
-	main {
-		text-align: center;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
 </style>

@@ -36,7 +36,7 @@
     }
 
     .bar {
-        margin: 0;
+        margin: 0 0.2em 0 0.2em;
         padding: 0;
         border: 2px solid #eaeaea;
         width: 3em;
