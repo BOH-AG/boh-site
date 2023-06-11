@@ -2,6 +2,9 @@
     export let percent;
     export let height = 0;
     export let delay = 0;
+    export let bouncy = false;
+
+    import Letters from "./Letters.svelte";
 
     function getColor(num) {
         if (num<33) {
@@ -18,9 +21,19 @@
 
 <div class=bar>
     <img class="wave{delay}" src="./assets/wave.svg" alt="svg" style="border-bottom: #2541B2 solid {height-0.5}em;">
-    <span style="color: {getColor(percent[1])}">
-        {percent[0]}
-    </span>
+    {#if bouncy}
+        <Letters>
+            <span style="color: {getColor(percent[1])}">
+                {percent[0]}
+            </span>
+        </Letters>
+    {:else}
+        <span style="color: {getColor(percent[1])}">
+            {percent[0]}
+        </span>
+    {/if}
+    
+        
 </div>
 
 
@@ -36,7 +49,7 @@
     }
 
     .bar {
-        margin: 0;
+        margin: 0 0.2em 0 0.2em;
         padding: 0;
         border: 2px solid #eaeaea;
         width: 3em;

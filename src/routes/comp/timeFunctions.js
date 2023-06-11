@@ -5,7 +5,6 @@ export function records(id, param = "") {
             .then(response => response.json());
 }
 
-
 export function fixDate(date) {
     return date.replace(" ", "T").replace(".", "").slice(0, -4);
 }
@@ -16,7 +15,7 @@ export function percentify(val) {
 }
 
 export function relativeTime(date) { // pass date as string
-    let delta = dayjs().diff(dayjs(date), "seconds"); //-3600 > correct for utc+1 time difference
+    let delta = dayjs().diff(dayjs(date), "seconds");
     //console.log(delta)
     if (delta<45) {
         return "vor "+delta+" Sekunden";
