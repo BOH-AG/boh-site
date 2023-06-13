@@ -5,11 +5,11 @@
     import Weather from './comp/Weather.svelte';
     import Dialog, { Content } from '@smui/dialog';
     import IconButton from '@smui/icon-button';
-    import Button, { Label } from '@smui/button';
     import {records, relativeTime, fixDate, percentify} from './comp/timeFunctions.js';
-    import Letters from './comp/Letters.svelte';
+    import {onMount} from 'svelte';
 
     const pb = new PocketBase('https://db.theboh.de');
+
     let open = false; // warning menu open variable
     let warningMenuDate = "";
 
@@ -17,6 +17,14 @@
         warningMenuDate = date;
         open = true;
     }
+
+    let unique = {}  // reloads relative time (so it updates every second)
+    function reloadComp() {
+        unique = {}
+    }
+    onMount(() => {
+        setInterval(reloadComp, 1000);
+    })
 
 </script>
     <div class="chips">
@@ -40,7 +48,7 @@
                                 <h3>Feuchtigkeit %</h3>
                                 <div class="bars-inner">
                                     {#each [records.items[0].moisture1, records.items[0].moisture2, records.items[0].moisture3] as i, ii}
-                                        <WaterBar percent={[i, percentify(i)]} height={8*(percentify(i)*0.01)} delay={ii}/>
+                                        <WaterBar percent={[i, percentify(i)]} height={8*(percentify(i)*0.01)} delay={ii} bouncy={true}/>
                                     {/each}
                                 </div>
                             </div>
@@ -55,8 +63,10 @@
                             <div class="dates">
                                 {#await pb.collection("beetDaten").getList(1, 1, {filter: "(beet='" + beet.id + "'&&wasWatered=true)", sort: "-created", "$autoCancel": false})}
                                     <br>
-                                {:then wateringRecords} 
-                                    <p>zuletzt Bewässert {relativeTime(wateringRecords.items[0].created)}</p>
+                                {:then wateringRecords}
+                                    {#key unique}
+                                        <p>zuletzt Bewässert {relativeTime(wateringRecords.items[0].created)}</p>
+                                    {/key}
                                     <h6>({dayjs(wateringRecords.items[0].created).format('DD.MM - HH:mm:ss')})</h6>
                                 {/await}
                             </div>

@@ -21,11 +21,18 @@
 
 <div class=bar>
     <img class="wave{delay}" src="./assets/wave.svg" alt="svg" style="border-bottom: #2541B2 solid {height-0.5}em;">
-    <Letters>
+    {#if bouncy}
+        <Letters>
+            <span style="color: {getColor(percent[1])}">
+                {percent[0]}
+            </span>
+        </Letters>
+    {:else}
         <span style="color: {getColor(percent[1])}">
             {percent[0]}
         </span>
-    </Letters>
+    {/if}
+    
         
 </div>
 
@@ -39,12 +46,6 @@
         color: #eaeaea;
         font-size: xx-large;
         color: #d2d600;
-		-webkit-touch-callout: none; /* iOS Safari */
-    	-webkit-user-select: none; /* Safari */
-     	-khtml-user-select: none; /* Konqueror HTML */
-       	-moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-        user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
     }
 
     .bar {
