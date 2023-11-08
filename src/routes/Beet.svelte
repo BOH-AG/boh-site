@@ -98,6 +98,10 @@
     .chips {
         margin: 0 1em 0 1em;
         width: calc(100vw-2em);
+        display: flex;
+        justify-content: space-evenly;
+        align-content: flex-start;
+        flex-wrap: wrap;
     }
     .chip {
         width: calc(100%-2em);
@@ -105,6 +109,7 @@
         padding: 1em;
         border-radius: 2em;
         margin: 0.5em 0;
+        width: 25em;
     }
     .chip .b1 {
         display: flex;

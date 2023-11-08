@@ -49,7 +49,7 @@
     }
 
     .bar {
-        margin: 0 0.2em 0 0.2em;
+        margin: 0 0.5em 0 0.5em;
         padding: 0;
         border: 2px solid #eaeaea;
         width: 3em;
